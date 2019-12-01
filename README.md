@@ -9,7 +9,7 @@ The scripts are developed and tested on Raspberry Pi platform.  It will work wit
 # installation
 Install Python 3 and the obd package (pip3 install obd)
 
-Plug in the OBD-II connector and try running the script.  It should start outputting JSON data to the /home/pi directory.
+Plug in the OBD-II connector and try running the script with "python3 obd2josn.py".  It should start outputting JSON data to a log file in the /home/pi directory.
 
 To start the script automatically, copy the obdii.service file to /lib/systemd/system and run:
 
