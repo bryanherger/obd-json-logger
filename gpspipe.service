@@ -1,0 +1,14 @@
+[Unit]
+Description=gpspipe auto-start
+# After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/gpspipe.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

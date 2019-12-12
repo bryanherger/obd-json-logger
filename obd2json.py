@@ -23,10 +23,14 @@ while connection.status() == obd.OBDStatus.CAR_CONNECTED:
         pidCmd = pid.command
         if pidCmd[1] == 49:
             resp = connection.query(pid)
-            obdDict[pidName] = str(resp.value)
+            if hasattr(resp.value, 'units'):
+                obdDict[pidName+'_'+str(resp.value.units)] = resp.value.magnitude
+            else:
+                obdDict[pidName] = str(resp.value)
     obdJson = json.dumps(obdDict)
     print(obdJson, file = sourceFile)
     sourceFile.flush()
     time.sleep(1)
+sourceFile.flush()
 sourceFile.close()
 
