@@ -6,6 +6,8 @@ You'll need an OBD-II to USB serial interface to read the data.  I'm using a Sca
 
 The scripts are developed and tested on Raspberry Pi platform.  It will work with any model Pi, though you'll need a car charger to power it.
 
+If you'd also like to collect GPS data to complement the OBD-II readout, there's a service and script to collect data from a USB GPS device supported by gpsd.  I'm using a u-Blox 7 GPS/GLONASS receiver.
+
 # installation
 Install Python 3 and the obd package (pip3 install obd)
 
@@ -17,17 +19,21 @@ sudo systemctl enable obdii
 
 You can also start it immediately with sudo systemctl start obdii
 
+If you have a GPS device attached, you can add the included gpspipe service and script to collect GPS data.  The GPS and OBD data will be logged as JSON to separate files currently.
+
 # output
 The obd library will scan for valid codes, and the script will read all Mode 1 diagnostic codes continuously (or, as fast as the interface can supply them, plus a short delay).
 
 The library is documented at https://python-obd.readthedocs.io/en/latest/
 
-The JSON output can be read by any engine that supports JOSN input.  For example, load the data into Vertica (http://www.vertica.com/) with:
+The JSON output can be read by any engine that supports JSON input.  For example, load the data into Vertica (http://www.vertica.com/) with:
 
 CREATE FLEX TABLE obd();
 
 COPY obd FROM LOCAL 'obd-file' PARSER FJSONPARSER();
 
 SELECT COMPUTE_FLEXTABLE_KEYS_AND_BUILD_VIEW('obd');
+
+-- If using vsql, you may wish to set \x to read the OBD fields more easily
 
 SELECT * FROM obd_view LIMIT 10;
