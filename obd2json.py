@@ -12,7 +12,7 @@ connection = obd.OBD() # auto connect
 if connection.status() != obd.OBDStatus.CAR_CONNECTED:
     quit()
 print (connection.status())
-sourceFile = open('/home/pi/obd-'+str(time.time())+'.txt', 'a')
+sourceFile = open('/home/pi/obd-'+str(time.time())+'.json', 'a')
 while connection.status() == obd.OBDStatus.CAR_CONNECTED:
     ts = math.floor(time.time())
     obdDict = {}
