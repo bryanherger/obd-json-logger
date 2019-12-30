@@ -1,0 +1,14 @@
+[Unit]
+Description=OBDII auto-start
+# After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/usr/bin/python3 /home/pi/9dof.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

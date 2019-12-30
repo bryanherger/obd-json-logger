@@ -1,10 +1,12 @@
 # obd-json-logger
 Scripts to capture OBD-II data into JSON format for analytics.
 
+Additional scripts and service examples are provided for JSON logging from gpsd/gpspipe (gpspipe.py) and accelerometer data (9dof.py) using Adafruit 9-DOF ACCEL/MAG/GYRO+TEMP BREAKOUT BOARD - LSM9DS1 from https://www.adafruit.com/product/3387
+
 # prerequisites
 You'll need an OBD-II to USB serial interface to read the data.  I'm using a Scantool OBDLink SX.
 
-The scripts are developed and tested on Raspberry Pi platform.  It will work with any model Pi, though you'll need a car charger to power it.
+The scripts are developed and tested on Raspberry Pi platform.  It should work with any model Pi, though you'll need a car USB charger for power.
 
 # installation
 Install Python 3 and the obd package (pip3 install obd)
